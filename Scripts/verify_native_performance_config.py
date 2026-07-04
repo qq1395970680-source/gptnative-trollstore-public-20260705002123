@@ -7,7 +7,8 @@ import sys
 from pathlib import Path
 
 
-SOURCE_PATH = Path("Sources/ChatGPTWebView.swift")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+SOURCE_PATH = PROJECT_ROOT / "Sources" / "ChatGPTWebView.swift"
 
 REQUIRED_SNIPPETS = {
     "vertical scroll indicator hidden": "webView.scrollView.showsVerticalScrollIndicator = false",
