@@ -655,7 +655,7 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                     position: fixed !important;
                     right: 0 !important;
                     top: 0 !important;
-                    z-index: 2147482600 !important;
+                    z-index: 0 !important;
                 }
 
                 body,
@@ -864,7 +864,7 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 setImportantStyle(topSurfaceMask, "position", "fixed");
                 setImportantStyle(topSurfaceMask, "right", "0");
                 setImportantStyle(topSurfaceMask, "top", "0");
-                setImportantStyle(topSurfaceMask, "z-index", "2147482600");
+                setImportantStyle(topSurfaceMask, "z-index", "0");
             };
 
             const shouldOffsetBottomElement = (element) => {

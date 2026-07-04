@@ -361,6 +361,7 @@ assert(css.includes("*::-webkit-scrollbar"), "webkit scrollbar hiding CSS is mis
 assert(css.includes("#gpt-native-drawer-mask"), "drawer mask CSS is missing");
 assert(css.includes("#gpt-native-top-surface-mask"), "top safe-area mask CSS is missing");
 assert(css.includes("height: env(safe-area-inset-top)"), "top safe-area mask height is missing");
+assert(css.includes("z-index: 0 !important"), "top safe-area mask must stay behind header controls");
 assert(css.includes("scroll-margin-bottom"), "media scroll margin CSS is missing");
 assert(css.includes("-webkit-touch-callout: none"), "image touch-callout CSS is missing");
 assert(css.includes("--main-surface-primary: var(--gpt-native-safe-surface) !important"), "ChatGPT surface token override is missing");
@@ -373,6 +374,7 @@ assert(result.topBand.style.getPropertyValue("background") === "var(--gpt-native
 assert(result.topSurfaceMask?.getAttribute("aria-hidden") === "true", "top safe-area mask was not installed");
 assert(result.topSurfaceMask.style.getPropertyValue("background") === "var(--gpt-native-safe-surface)", "top safe-area mask surface was not painted");
 assert(result.topSurfaceMask.style.getPropertyValue("pointer-events") === "none", "top safe-area mask must not block taps");
+assert(result.topSurfaceMask.style.getPropertyValue("z-index") === "0", "top safe-area mask inline z-index must stay behind header controls");
 assert(
   result.document.documentElement.style.getPropertyValue("--main-surface-primary") === "var(--gpt-native-safe-surface)",
   "root ChatGPT surface token was not forced inline"
