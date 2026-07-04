@@ -1,0 +1,24 @@
+# ChatGPT Login Wrapper
+
+This project builds an iOS 16+ TrollStore IPA that opens the official ChatGPT web app in a full-screen WKWebView.
+
+It uses your normal ChatGPT account login at `https://chatgpt.com/`. It does not use an OpenAI API key and does not call the OpenAI API directly.
+
+## Behavior
+
+- Opens `https://chatgpt.com/`.
+- Keeps login cookies with the default WKWebView data store.
+- Reloads the ChatGPT home/new-chat entry when the app becomes active.
+- Uses a full-screen app surface with only a slim loading indicator.
+- Targets iPhone / arm64 / iOS 16.0+.
+
+## Build
+
+From Windows, use:
+
+```powershell
+$env:GITHUB_TOKEN = "YOUR_TOKEN"
+.\Build-IPA-With-GitHubApi.ps1 -Repo "OWNER/REPO" -CreateRepo
+```
+
+The script uploads a clean repository tree through `https://api.github.com`, runs `.github/workflows/build-trollstore-ipa.yml`, and downloads the IPA artifact.

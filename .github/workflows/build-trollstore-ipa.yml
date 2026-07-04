@@ -1,0 +1,31 @@
+name: Build TrollStore IPA
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          brew update
+          brew install xcodegen ldid
+
+      - name: Build and package IPA
+        run: |
+          chmod +x Scripts/build_ipa_macos.sh
+          Scripts/build_ipa_macos.sh
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: GPTNative-ipa
+          path: build/GPTNative.ipa

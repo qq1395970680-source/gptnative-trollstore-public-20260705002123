@@ -1,0 +1,56 @@
+name: GPTNative
+
+options:
+  minimumXcodeGenVersion: 2.39.0
+  deploymentTarget:
+    iOS: "16.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    PRODUCT_BUNDLE_IDENTIFIER: local.codex.gptnative
+    CODE_SIGN_STYLE: Manual
+    DEVELOPMENT_TEAM: ""
+
+targets:
+  GPTNative:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: Sources/GPTNativeApp.swift
+      - path: Sources/ChatGPTWebView.swift
+      - path: Sources/Theme.swift
+      - path: Resources
+        excludes:
+          - Info.plist
+    info:
+      path: Resources/Info.plist
+      properties:
+        CFBundleDisplayName: ChatGPT
+        CFBundleName: GPTNative
+        CADisableMinimumFrameDurationOnPhone: true
+        LSRequiresIPhoneOS: true
+        MinimumOSVersion: "16.0"
+        NSCameraUsageDescription: Allow ChatGPT to take photos for uploads.
+        NSMicrophoneUsageDescription: Allow ChatGPT to use voice input.
+        NSPhotoLibraryAddUsageDescription: Allow ChatGPT to save images to your photo library.
+        NSPhotoLibraryUsageDescription: Allow ChatGPT to choose images from your photo library.
+        NSSpeechRecognitionUsageDescription: Allow ChatGPT to transcribe voice input.
+        UIRequiresFullScreen: true
+        UIDeviceFamily:
+          - 1
+        UILaunchStoryboardName: LaunchScreen
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+    settings:
+      base:
+        PRODUCT_NAME: GPTNative
+        INFOPLIST_FILE: Resources/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ENABLE_PREVIEWS: YES
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: CHATGPT_WEB_LOGIN

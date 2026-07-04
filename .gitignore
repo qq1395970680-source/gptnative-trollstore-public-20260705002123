@@ -1,0 +1,11 @@
+.DS_Store
+.git-askpass.*
+build/
+DerivedData/
+github-build-output/
+github-api-build*.log
+github-api-build-meta.json
+*.ipa
+*.zip
+*.xcodeproj/
+*.xcworkspace/
