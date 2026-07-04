@@ -2165,7 +2165,34 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 return
             }
             state?.hasFinishedInitialLoad = true
-            state?.errorText = nsError.localizedDescription
+            state?.errorText = userFacingConnectionMessage(for: nsError)
+        }
+
+        private func userFacingConnectionMessage(for error: NSError) -> String {
+            guard error.domain == NSURLErrorDomain else {
+                return error.localizedDescription
+            }
+
+            switch error.code {
+            case NSURLErrorSecureConnectionFailed,
+                 NSURLErrorServerCertificateHasBadDate,
+                 NSURLErrorServerCertificateUntrusted,
+                 NSURLErrorServerCertificateHasUnknownRoot,
+                 NSURLErrorServerCertificateNotYetValid,
+                 NSURLErrorClientCertificateRejected,
+                 NSURLErrorClientCertificateRequired:
+                return "无法建立安全连接。通常是当前网络、节点/代理或证书链异常导致，不是只能在 Wi-Fi 下使用。请切换节点或网络后重试。"
+            case NSURLErrorNotConnectedToInternet:
+                return "当前没有网络连接。请检查 Wi-Fi、蜂窝数据或代理节点后重试。"
+            case NSURLErrorTimedOut,
+                 NSURLErrorCannotFindHost,
+                 NSURLErrorCannotConnectToHost,
+                 NSURLErrorNetworkConnectionLost,
+                 NSURLErrorDNSLookupFailed:
+                return "连接 ChatGPT 超时或中断。通常是网络、DNS 或节点不稳定导致，请切换节点或网络后重试。"
+            default:
+                return error.localizedDescription
+            }
         }
 
         func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
