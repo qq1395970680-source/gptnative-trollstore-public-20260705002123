@@ -30,6 +30,10 @@ jobs:
           chmod +x Scripts/build_ipa_macos.sh
           Scripts/build_ipa_macos.sh
 
+      - name: Verify packaged IPA
+        run: |
+          python3 Scripts/verify_packaged_ipa.py build/GPTNative.ipa
+
       - name: Upload IPA
         uses: actions/upload-artifact@v4
         with:

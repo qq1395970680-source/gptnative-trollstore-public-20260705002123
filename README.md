@@ -30,7 +30,9 @@ The GitHub Actions build runs the image-save bridge behavior checks before compi
 ```powershell
 node Scripts\verify_image_save_bridge.js
 node Scripts\verify_page_appearance_bridge.js
+python Scripts\verify_packaged_ipa.py ..\..\outputs\GPTNative.ipa
 ```
 
 The check extracts the real injected script from `Sources/ChatGPTWebView.swift` and verifies image long-press hit testing, composer/header non-misfires, canvas/background/link detection, and data-image filename handling.
 The page appearance check verifies viewport-fit, unified top/header surface painting, scrollbar hiding CSS, bottom composer safe-area offsetting, scroll padding, media scroll margins, and the mobile drawer mask.
+The packaged IPA check verifies the `Payload/*.app` structure, executable, display name, iOS minimum version, portrait-only orientation, full-screen flag, and the ProMotion unlock key.
