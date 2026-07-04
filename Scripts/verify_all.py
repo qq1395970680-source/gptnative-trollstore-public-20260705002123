@@ -43,6 +43,7 @@ def main() -> int:
 
     run(["node", "Scripts/verify_image_save_bridge.js"])
     run(["node", "Scripts/verify_page_appearance_bridge.js"])
+    run([sys.executable, "Scripts/verify_native_surface_config.py"])
     run([sys.executable, "Scripts/verify_native_performance_config.py"])
     run([sys.executable, "Scripts/verify_network_error_messages.py"])
     run([sys.executable, "Scripts/verify_packaged_ipa.py", str(ipa_path)])

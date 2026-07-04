@@ -16,6 +16,8 @@ private enum ChatGPTSurface {
 }
 
 private final class WindowSurfaceView: UIView {
+    private weak var statusSurfaceCover: UIView?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         isUserInteractionEnabled = false
@@ -28,8 +30,17 @@ private final class WindowSurfaceView: UIView {
         backgroundColor = ChatGPTSurface.dynamic
     }
 
+    deinit {
+        statusSurfaceCover?.removeFromSuperview()
+    }
+
     override func didMoveToWindow() {
         super.didMoveToWindow()
+        applySurface()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
         applySurface()
     }
 
@@ -53,6 +64,34 @@ private final class WindowSurfaceView: UIView {
             view.backgroundColor = surface
             ancestor = view.superview
         }
+
+        updateStatusSurfaceCover(surface)
+    }
+
+    private func updateStatusSurfaceCover(_ surface: UIColor) {
+        guard let window else {
+            statusSurfaceCover?.removeFromSuperview()
+            return
+        }
+
+        let cover: UIView
+        if let existing = statusSurfaceCover, existing.superview === window {
+            cover = existing
+        } else {
+            let newCover = UIView(frame: .zero)
+            newCover.accessibilityIdentifier = "gpt-native-status-surface-cover"
+            newCover.isUserInteractionEnabled = false
+            newCover.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+            newCover.layer.zPosition = CGFloat.greatestFiniteMagnitude
+            window.addSubview(newCover)
+            statusSurfaceCover = newCover
+            cover = newCover
+        }
+
+        let topInset = max(window.safeAreaInsets.top, 0)
+        cover.frame = CGRect(x: 0, y: 0, width: window.bounds.width, height: topInset)
+        cover.backgroundColor = surface
+        cover.isHidden = topInset <= 0
     }
 }
 
@@ -552,6 +591,11 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                     --gpt-native-safe-surface: #ffffff;
                     --gpt-native-safe-bottom: env(safe-area-inset-bottom);
                     --gpt-native-composer-clearance: 0px;
+                    --main-surface-primary: var(--gpt-native-safe-surface) !important;
+                    --main-surface-secondary: var(--gpt-native-safe-surface) !important;
+                    --main-surface-tertiary: var(--gpt-native-safe-surface) !important;
+                    --bg-primary: var(--gpt-native-safe-surface) !important;
+                    --bg-secondary: var(--gpt-native-safe-surface) !important;
                 }
 
                 :root,
@@ -599,6 +643,19 @@ struct ChatGPTWebContainer: UIViewRepresentable {
 
                 #gpt-native-drawer-mask[data-visible="true"] {
                     opacity: 0.94 !important;
+                }
+
+                #gpt-native-top-surface-mask {
+                    background: var(--gpt-native-safe-surface) !important;
+                    background-color: var(--gpt-native-safe-surface) !important;
+                    background-image: none !important;
+                    height: env(safe-area-inset-top) !important;
+                    left: 0 !important;
+                    pointer-events: none !important;
+                    position: fixed !important;
+                    right: 0 !important;
+                    top: 0 !important;
+                    z-index: 2147482600 !important;
                 }
 
                 body,
@@ -677,6 +734,10 @@ struct ChatGPTWebContainer: UIViewRepresentable {
             drawerMask.id = "gpt-native-drawer-mask";
             drawerMask.setAttribute("aria-hidden", "true");
             document.documentElement.appendChild(drawerMask);
+            const topSurfaceMask = document.createElement("div");
+            topSurfaceMask.id = "gpt-native-top-surface-mask";
+            topSurfaceMask.setAttribute("aria-hidden", "true");
+            document.documentElement.appendChild(topSurfaceMask);
             const chromeElementSelector = [
                 "header",
                 "nav",
@@ -734,11 +795,15 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 }
 
                 const style = window.getComputedStyle(element);
-                if (style.position !== "fixed" && style.position !== "sticky") {
+                const rect = element.getBoundingClientRect();
+                const nearTopSurface = rect.top <= 2
+                    && rect.width >= window.innerWidth * 0.45
+                    && rect.height > 0
+                    && rect.height <= 200;
+                if (style.position !== "fixed" && style.position !== "sticky" && !nearTopSurface) {
                     return false;
                 }
 
-                const rect = element.getBoundingClientRect();
                 if (rect.width < window.innerWidth * 0.45 || rect.height <= 0 || rect.height > 160) {
                     return false;
                 }
@@ -769,6 +834,37 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 setImportantStyle(element, "background-image", "none");
                 setImportantStyle(element, "border-bottom-color", "transparent");
                 setImportantStyle(element, "box-shadow", "none");
+            };
+
+            const surfaceTokenNames = [
+                "--main-surface-primary",
+                "--main-surface-secondary",
+                "--main-surface-tertiary",
+                "--bg-primary",
+                "--bg-secondary"
+            ];
+
+            const paintRootSurface = () => {
+                [document.documentElement, document.body].forEach((element) => {
+                    if (!element) {
+                        return;
+                    }
+
+                    setImportantStyle(element, "background", "var(--gpt-native-safe-surface)");
+                    setImportantStyle(element, "background-color", "var(--gpt-native-safe-surface)");
+                    setImportantStyle(element, "background-image", "none");
+                    surfaceTokenNames.forEach((tokenName) => {
+                        setImportantStyle(element, tokenName, "var(--gpt-native-safe-surface)");
+                    });
+                });
+                paintSurface(topSurfaceMask);
+                setImportantStyle(topSurfaceMask, "height", "env(safe-area-inset-top)");
+                setImportantStyle(topSurfaceMask, "left", "0");
+                setImportantStyle(topSurfaceMask, "pointer-events", "none");
+                setImportantStyle(topSurfaceMask, "position", "fixed");
+                setImportantStyle(topSurfaceMask, "right", "0");
+                setImportantStyle(topSurfaceMask, "top", "0");
+                setImportantStyle(topSurfaceMask, "z-index", "2147482600");
             };
 
             const shouldOffsetBottomElement = (element) => {
@@ -820,7 +916,7 @@ struct ChatGPTWebContainer: UIViewRepresentable {
             };
 
             const looksLikeOpenDrawer = (element) => {
-                if (!element || element === drawerMask || element === document.body || element === document.documentElement) {
+                if (!element || element === drawerMask || element === topSurfaceMask || element === document.body || element === document.documentElement) {
                     return false;
                 }
 
@@ -1012,6 +1108,7 @@ struct ChatGPTWebContainer: UIViewRepresentable {
 
             const applySafeAreaToChromeElements = () => {
                 try {
+                    paintRootSurface();
                     let bottomChromeHeight = 0;
                     const bottomChromeRects = [];
                     const chromeElements = Array.from(new Set([

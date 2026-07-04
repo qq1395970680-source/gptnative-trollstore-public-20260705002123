@@ -23,6 +23,10 @@ jobs:
         run: |
           node Scripts/verify_page_appearance_bridge.js
 
+      - name: Verify native surface config
+        run: |
+          python3 Scripts/verify_native_surface_config.py
+
       - name: Verify native performance config
         run: |
           python3 Scripts/verify_native_performance_config.py

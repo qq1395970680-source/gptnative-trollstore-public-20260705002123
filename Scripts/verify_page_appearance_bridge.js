@@ -258,6 +258,11 @@ function computedStyleFor(element) {
 }
 
 function runPageAppearanceScenario() {
+  const topBand = new FakeElement("div", {
+    rect: rect(0, 0, 430, 64),
+    computed: { position: "static", bottom: "auto" },
+    attrs: { class: "bg-token-main-surface-secondary" },
+  });
   const header = new FakeElement("header", {
     rect: rect(0, 0, 430, 118),
     computed: { position: "fixed", bottom: "auto" },
@@ -280,7 +285,7 @@ function runPageAppearanceScenario() {
     attrs: { class: "sidebar drawer" },
   });
 
-  const { document } = createDocument([header, composer, main, drawer]);
+  const { document } = createDocument([topBand, header, composer, main, drawer]);
   const timeouts = [];
   const observed = [];
 
@@ -334,9 +339,10 @@ function runPageAppearanceScenario() {
 
   const styleElement = document.head.children.find((element) => element.id === "gpt-native-page-appearance");
   const drawerMask = document.documentElement.children.find((element) => element.id === "gpt-native-drawer-mask");
+  const topSurfaceMask = document.documentElement.children.find((element) => element.id === "gpt-native-top-surface-mask");
   const viewport = document.querySelector("meta[name='viewport']");
 
-  return { header, composer, main, drawer, drawerMask, styleElement, viewport, observed, document };
+  return { topBand, header, composer, main, drawer, drawerMask, topSurfaceMask, styleElement, viewport, observed, document };
 }
 
 function assert(condition, message) {
@@ -353,13 +359,24 @@ assert(css.includes("--gpt-native-safe-surface: #ffffff"), "light safe surface C
 assert(css.includes("scrollbar-width: none"), "scrollbar hiding CSS is missing");
 assert(css.includes("*::-webkit-scrollbar"), "webkit scrollbar hiding CSS is missing");
 assert(css.includes("#gpt-native-drawer-mask"), "drawer mask CSS is missing");
+assert(css.includes("#gpt-native-top-surface-mask"), "top safe-area mask CSS is missing");
+assert(css.includes("height: env(safe-area-inset-top)"), "top safe-area mask height is missing");
 assert(css.includes("scroll-margin-bottom"), "media scroll margin CSS is missing");
 assert(css.includes("-webkit-touch-callout: none"), "image touch-callout CSS is missing");
+assert(css.includes("--main-surface-primary: var(--gpt-native-safe-surface) !important"), "ChatGPT surface token override is missing");
 
 assert(result.header.style.getPropertyValue("background") === "var(--gpt-native-safe-surface)", "top header surface was not painted");
 assert(result.header.style.getPropertyPriority("background") === "important", "top header surface is not important");
 assert(result.header.style.getPropertyValue("background-image") === "none", "top header background image was not removed");
 assert(result.header.style.getPropertyValue("box-shadow") === "none", "top header shadow was not removed");
+assert(result.topBand.style.getPropertyValue("background") === "var(--gpt-native-safe-surface)", "normal top band surface was not painted");
+assert(result.topSurfaceMask?.getAttribute("aria-hidden") === "true", "top safe-area mask was not installed");
+assert(result.topSurfaceMask.style.getPropertyValue("background") === "var(--gpt-native-safe-surface)", "top safe-area mask surface was not painted");
+assert(result.topSurfaceMask.style.getPropertyValue("pointer-events") === "none", "top safe-area mask must not block taps");
+assert(
+  result.document.documentElement.style.getPropertyValue("--main-surface-primary") === "var(--gpt-native-safe-surface)",
+  "root ChatGPT surface token was not forced inline"
+);
 
 assert(
   /^calc\(0(px)? \+ var\(--gpt-native-safe-bottom\)\)$/.test(result.composer.style.getPropertyValue("bottom")),
