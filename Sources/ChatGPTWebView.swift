@@ -1195,6 +1195,18 @@ struct ChatGPTWebContainer: UIViewRepresentable {
             };
 
             const visibleScore = (element) => visibleScoreForRect(element.getBoundingClientRect());
+            const metricsForElement = (element) => {
+                const rect = element.getBoundingClientRect();
+                return {
+                    area: Math.max(0, rect.width * rect.height),
+                    score: visibleScoreForRect(rect)
+                };
+            };
+
+            const viewportFallbackMinimumArea = () => {
+                const viewportArea = Math.max(1, window.innerWidth * window.innerHeight);
+                return Math.max(10000, Math.min(90000, viewportArea * 0.035));
+            };
 
             const images = () => {
                 const seen = new Set();
@@ -1274,18 +1286,26 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 return "chatgpt-image-" + String(index + 1);
             };
 
-            const payloadForImage = (image, index = 0) => ({
-                url: image.currentSrc || image.src || image.getAttribute("src") || "",
-                filename: filenameFor(image, index),
-                capturedAt: Date.now()
-            });
+            const payloadForImage = (image, index = 0) => {
+                const metrics = metricsForElement(image);
+                return {
+                    url: image.currentSrc || image.src || image.getAttribute("src") || "",
+                    filename: filenameFor(image, index),
+                    capturedAt: Date.now(),
+                    _area: metrics.area,
+                    _score: metrics.score
+                };
+            };
 
             const payloadForCanvas = (canvas, index = 0) => {
                 try {
+                    const metrics = metricsForElement(canvas);
                     return {
                         url: canvas.toDataURL("image/png"),
                         filename: "chatgpt-canvas-" + String(index + 1) + ".png",
-                        capturedAt: Date.now()
+                        capturedAt: Date.now(),
+                        _area: metrics.area,
+                        _score: metrics.score
                     };
                 } catch (_) {
                     return null;
@@ -1309,10 +1329,13 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 }
 
                 const value = normalizedURL(match[2]);
+                const metrics = metricsForElement(node);
                 return {
                     url: value,
                     filename: filenameFromURL(value, node.getAttribute("aria-label") || node.getAttribute("alt") || "chatgpt-image"),
-                    capturedAt: Date.now()
+                    capturedAt: Date.now(),
+                    _area: metrics.area,
+                    _score: metrics.score
                 };
             };
 
@@ -1367,7 +1390,9 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 return {
                     url: value,
                     filename: filenameFromURL(value, anchor.getAttribute("download") || anchor.getAttribute("aria-label") || "chatgpt-image"),
-                    capturedAt: Date.now()
+                    capturedAt: Date.now(),
+                    _area: metricsForElement(anchor).area,
+                    _score: metricsForElement(anchor).score
                 };
             };
 
@@ -1430,18 +1455,62 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 return payloads;
             };
 
-            const bestVisiblePayload = () => {
-                const img = bestImage();
-                if (img) {
-                    return payloadForImage(img);
-                }
+            const payloadRank = (payload) => Number(payload?._score || -1);
 
-                const canvas = bestCanvas();
-                if (canvas) {
-                    return payloadForCanvas(canvas);
-                }
+            const bestVisiblePayload = (requireLarge = false) => {
+                const minimumArea = requireLarge ? viewportFallbackMinimumArea() : 0;
+                const payloads = [];
+                images().forEach((img, index) => payloads.push(payloadForImage(img, index)));
+                canvases().forEach((canvas, index) => {
+                    const payload = payloadForCanvas(canvas, index);
+                    if (payload) {
+                        payloads.push(payload);
+                    }
+                });
+                backgroundPayloads().forEach((payload) => payloads.push(payload));
+                linkPayloads().forEach((payload) => payloads.push(payload));
 
-                return backgroundPayloads()[0] || linkPayloads()[0] || null;
+                return payloads
+                    .filter((payload) => payloadRank(payload) >= 0)
+                    .filter((payload) => !requireLarge || Number(payload._area || 0) >= minimumArea)
+                    .sort((a, b) => payloadRank(b) - payloadRank(a))[0] || null;
+            };
+
+            const nonMediaInteractiveSelector = [
+                "textarea",
+                "input",
+                "select",
+                "[contenteditable='true']",
+                "[role='textbox']",
+                "[data-testid*='composer']",
+                "[data-testid*='prompt']",
+                "[class*='composer']",
+                "[class*='prompt']",
+                "header",
+                "nav",
+                "[role='banner']",
+                "[data-testid*='header']",
+                "[class*='header']",
+                "[class*='navbar']"
+            ].join(",");
+
+            const isNonMediaInteractivePoint = (elements) => {
+                return elements.some((element) => {
+                    if (!element || !element.closest) {
+                        return false;
+                    }
+
+                    const container = element.closest(nonMediaInteractiveSelector);
+                    if (!container) {
+                        return false;
+                    }
+
+                    if (candidateFromElement(container) || canvasPayloadFromElement(container) || backgroundPayloadFromElement(container) || linkPayloadFromElement(container)) {
+                        return false;
+                    }
+
+                    return true;
+                });
             };
 
             const imageAtPoint = (x, y) => {
@@ -1466,6 +1535,10 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                     if (linkPayload) {
                         return linkPayload;
                     }
+                }
+
+                if (isNonMediaInteractivePoint(elements)) {
+                    return null;
                 }
 
                 const nearby = images()
@@ -1500,7 +1573,7 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                     .filter((entry) => entry.distance <= 60)
                     .sort((a, b) => a.distance - b.distance || b.area - a.area)[0]?.canvas || null;
 
-                return nearbyCanvas ? payloadForCanvas(nearbyCanvas) : bestVisiblePayload();
+                return nearbyCanvas ? payloadForCanvas(nearbyCanvas) : bestVisiblePayload(true);
             };
 
             const filenameFromURL = (value, fallback) => {
@@ -1526,6 +1599,12 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 if (mime.includes("webp")) { return "webp"; }
                 if (mime.includes("gif")) { return "gif"; }
                 return "png";
+            };
+
+            const filenameWithExtension = (filename, mimeType) => {
+                const value = String(filename || "chatgpt-image");
+                const extension = extensionForMime(mimeType);
+                return new RegExp("\\\\." + extension + "$", "i").test(value) ? value : value + "." + extension;
             };
 
             const postBase64 = (base64, mimeType, filename, mode) => {
@@ -1580,7 +1659,7 @@ struct ChatGPTWebContainer: UIViewRepresentable {
 
                 if (src.startsWith("data:")) {
                     const payload = dataURLPayload(src);
-                    postBase64(payload.base64, payload.mimeType, filename + "." + extensionForMime(payload.mimeType), mode);
+                    postBase64(payload.base64, payload.mimeType, filenameWithExtension(filename, payload.mimeType), mode);
                     return;
                 }
 
@@ -1589,7 +1668,7 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 const dataURL = await blobToDataURL(blob);
                 const payload = dataURLPayload(dataURL);
                 const mimeType = payload.mimeType || blob.type || response.headers.get("content-type") || "image/png";
-                postBase64(payload.base64, mimeType, filename + "." + extensionForMime(mimeType), mode);
+                postBase64(payload.base64, mimeType, filenameWithExtension(filename, mimeType), mode);
             };
 
             const saveURL = async (url, suggestedFilename, mode) => {
@@ -1612,7 +1691,7 @@ struct ChatGPTWebContainer: UIViewRepresentable {
 
                 if (String(url).startsWith("data:")) {
                     const payload = dataURLPayload(String(url));
-                    postBase64(payload.base64, payload.mimeType, filename + "." + extensionForMime(payload.mimeType), mode);
+                    postBase64(payload.base64, payload.mimeType, filenameWithExtension(filename, payload.mimeType), mode);
                     return;
                 }
 
@@ -1621,7 +1700,7 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 const dataURL = await blobToDataURL(blob);
                 const payload = dataURLPayload(dataURL);
                 const mimeType = payload.mimeType || blob.type || response.headers.get("content-type") || "image/png";
-                postBase64(payload.base64, mimeType, filename + "." + extensionForMime(mimeType), mode);
+                postBase64(payload.base64, mimeType, filenameWithExtension(filename, mimeType), mode);
             };
 
             const savePayload = async (payload, index, mode) => {
@@ -1629,15 +1708,15 @@ struct ChatGPTWebContainer: UIViewRepresentable {
             };
 
             const saveOne = async () => {
-                const img = bestImage();
-                if (!img) {
+                const payload = bestVisiblePayload(false);
+                if (!payload) {
                     post({ type: "status", message: "未找到图片" });
                     return;
                 }
 
                 post({ type: "status", message: "正在保存图片..." });
                 try {
-                    await saveImage(img, 0, "single");
+                    await savePayload(payload, 0, "single");
                 } catch (_) {
                     post({ type: "status", message: "保存失败" });
                 }
@@ -1832,6 +1911,20 @@ struct ChatGPTWebContainer: UIViewRepresentable {
 
         func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
             true
+        }
+
+        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+            guard gestureRecognizer === imageLongPressRecognizer else {
+                return true
+            }
+
+            if let menuView = imageSaveContextMenuView,
+               let touchedView = touch.view,
+               touchedView.isDescendant(of: menuView) {
+                return false
+            }
+
+            return true
         }
 
         func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
