@@ -103,6 +103,7 @@ function Test-ExcludedPath {
     if ($p -match '(^|/)DerivedData(/|$)') { return $true }
     if ($p -match '(^|/)github-build-output(/|$)') { return $true }
     if ($p -match '(^|/)github-api-build.*$') { return $true }
+    if ($p -match '(^|/)actions-run-.*(/|$)') { return $true }
     if ($p -match '(^|/)actions-job-.*\.log$') { return $true }
     if ($p -match '\.xcodeproj/') { return $true }
     if ($p -match '\.xcworkspace/') { return $true }

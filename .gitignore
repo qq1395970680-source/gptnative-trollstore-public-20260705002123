@@ -5,6 +5,8 @@ DerivedData/
 github-build-output/
 github-api-build*.log
 github-api-build-meta.json
+actions-run-*-logs/
+actions-run-*-logs.zip
 *.ipa
 *.zip
 *.xcodeproj/
