@@ -18,6 +18,9 @@ jobs:
         run: |
           node --version
           node Scripts/verify_image_save_bridge.js
+
+      - name: Verify page appearance bridge
+        run: |
           node Scripts/verify_page_appearance_bridge.js
 
       - name: Install tools
