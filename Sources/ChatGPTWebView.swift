@@ -171,6 +171,8 @@ struct ChatGPTLoginView: View {
             ChatGPTWebContainer(state: webState)
                 .ignoresSafeArea(.container, edges: .bottom)
 
+            topSafeAreaSurface
+
             if webState.estimatedProgress > 0 && webState.estimatedProgress < 1 {
                 GeometryReader { proxy in
                     Rectangle()
@@ -201,6 +203,16 @@ struct ChatGPTLoginView: View {
                 webState.captureCurrentLocation()
             }
         }
+    }
+
+    private var topSafeAreaSurface: some View {
+        GeometryReader { proxy in
+            Color(uiColor: ChatGPTSurface.dynamic)
+                .frame(height: proxy.safeAreaInsets.top)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .ignoresSafeArea(.container, edges: .top)
+        }
+        .allowsHitTesting(false)
     }
 
     private var launchOverlay: some View {
@@ -543,8 +555,12 @@ struct ChatGPTWebContainer: UIViewRepresentable {
 
                 :root,
                 html,
-                body {
+                body,
+                #__next,
+                [data-nextjs-scroll-focus-boundary] {
+                    background: var(--gpt-native-safe-surface) !important;
                     background-color: var(--gpt-native-safe-surface) !important;
+                    background-image: none !important;
                     min-height: 100%;
                 }
 
@@ -602,12 +618,41 @@ struct ChatGPTWebContainer: UIViewRepresentable {
 
                 header,
                 nav,
-                [role="banner"] {
+                [role="banner"],
+                [data-testid*="header"],
+                [class*="header"],
+                [class*="navbar"],
+                [class*="sticky"][class*="top"],
+                [class*="top-0"] {
                     -webkit-backdrop-filter: none !important;
                     backdrop-filter: none !important;
+                    background: var(--gpt-native-safe-surface) !important;
                     background-image: none !important;
                     background-color: var(--gpt-native-safe-surface) !important;
                     border-bottom-color: transparent !important;
+                    box-shadow: none !important;
+                }
+
+                header::before,
+                header::after,
+                nav::before,
+                nav::after,
+                [role="banner"]::before,
+                [role="banner"]::after,
+                [data-testid*="header"]::before,
+                [data-testid*="header"]::after,
+                [class*="header"]::before,
+                [class*="header"]::after,
+                [class*="navbar"]::before,
+                [class*="navbar"]::after,
+                [class*="sticky"][class*="top"]::before,
+                [class*="sticky"][class*="top"]::after,
+                [class*="top-0"]::before,
+                [class*="top-0"]::after {
+                    -webkit-backdrop-filter: none !important;
+                    backdrop-filter: none !important;
+                    background: transparent !important;
+                    background-image: none !important;
                     box-shadow: none !important;
                 }
 
@@ -643,8 +688,24 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 "[data-testid*='header']",
                 "[class*='header']",
                 "[class*='navbar']",
+                "[class*='sticky']",
+                "[class*='top-0']",
                 "[class*='composer']",
                 "[class*='prompt']",
+                "[class*='fixed']",
+                "[style*='position: fixed']",
+                "[style*='position: sticky']"
+            ].join(",");
+
+            const topSurfaceCandidateSelector = [
+                "body > *",
+                "main > *",
+                "[role='main'] > *",
+                "[data-testid*='header']",
+                "[class*='header']",
+                "[class*='navbar']",
+                "[class*='sticky']",
+                "[class*='top-0']",
                 "[class*='fixed']",
                 "[style*='position: fixed']",
                 "[style*='position: sticky']"
@@ -858,6 +919,8 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 "[data-testid*='thread']",
                 "[class*='header']",
                 "[class*='navbar']",
+                "[class*='sticky']",
+                "[class*='top-0']",
                 "[class*='sidebar']",
                 "[class*='drawer']",
                 "[class*='sheet']",
@@ -889,6 +952,8 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 "[data-testid*='header']",
                 "[class*='header']",
                 "[class*='navbar']",
+                "[class*='sticky']",
+                "[class*='top-0']",
                 "[class*='sidebar']",
                 "[class*='drawer']",
                 "[class*='sheet']",
@@ -948,7 +1013,11 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 try {
                     let bottomChromeHeight = 0;
                     const bottomChromeRects = [];
-                    Array.from(document.querySelectorAll(chromeElementSelector)).slice(0, 120).forEach((element) => {
+                    const chromeElements = Array.from(new Set([
+                        ...Array.from(document.querySelectorAll(chromeElementSelector)).slice(0, 140),
+                        ...Array.from(document.querySelectorAll(topSurfaceCandidateSelector)).slice(0, 180)
+                    ]));
+                    chromeElements.forEach((element) => {
                         if (shouldPaintTopElement(element)) {
                             paintSurface(element);
                         }
