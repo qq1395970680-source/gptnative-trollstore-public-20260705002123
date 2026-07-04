@@ -22,3 +22,13 @@ $env:GITHUB_TOKEN = "YOUR_TOKEN"
 ```
 
 The script uploads a clean repository tree through `https://api.github.com`, runs `.github/workflows/build-trollstore-ipa.yml`, and downloads the IPA artifact.
+
+## Verification
+
+The GitHub Actions build runs the image-save bridge behavior checks before compiling:
+
+```powershell
+node Scripts\verify_image_save_bridge.js
+```
+
+The check extracts the real injected script from `Sources/ChatGPTWebView.swift` and verifies image long-press hit testing, composer/header non-misfires, canvas/background/link detection, and data-image filename handling.
