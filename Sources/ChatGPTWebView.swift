@@ -377,13 +377,11 @@ private final class ImageSaveContextMenuView: UIView, UIGestureRecognizerDelegat
     func present() {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         alpha = 0
-        shadowView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        shadowView.transform = CGAffineTransform(scaleX: 0.96, y: 0.96)
         UIView.animate(
-            withDuration: 0.22,
+            withDuration: 0.16,
             delay: 0,
-            usingSpringWithDamping: 0.82,
-            initialSpringVelocity: 0.35,
-            options: [.allowUserInteraction, .beginFromCurrentState]
+            options: [.curveEaseOut, .allowUserInteraction, .beginFromCurrentState]
         ) {
             self.alpha = 1
             self.shadowView.transform = .identity
@@ -412,6 +410,7 @@ private final class ImageSaveContextMenuView: UIView, UIGestureRecognizerDelegat
     private func menuButton(title: String, systemImage: String, action: Selector) -> UIButton {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isExclusiveTouch = true
         var configuration = UIButton.Configuration.plain()
         configuration.title = title
         configuration.image = UIImage(systemName: systemImage)
@@ -496,11 +495,13 @@ struct ChatGPTWebContainer: UIViewRepresentable {
         webView.scrollView.keyboardDismissMode = .interactive
         webView.scrollView.delaysContentTouches = false
         webView.scrollView.canCancelContentTouches = true
-        webView.scrollView.decelerationRate = .normal
+        webView.scrollView.decelerationRate = .fast
         webView.scrollView.bounces = true
         webView.scrollView.alwaysBounceVertical = true
         webView.scrollView.alwaysBounceHorizontal = false
         webView.scrollView.backgroundColor = ChatGPTSurface.dynamic
+        webView.layer.drawsAsynchronously = true
+        webView.scrollView.layer.drawsAsynchronously = true
         webView.isOpaque = true
         webView.backgroundColor = ChatGPTSurface.dynamic
         if #available(iOS 15.0, *) {
@@ -1140,6 +1141,18 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 return naturalWidth >= minimumImageSize && naturalHeight >= minimumImageSize && rect.width >= 24 && rect.height >= 24;
             };
 
+            const isCandidateCanvas = (canvas) => {
+                if (!canvas || !canvas.isConnected || !canvas.getContext) {
+                    return false;
+                }
+
+                const rect = canvas.getBoundingClientRect();
+                return canvas.width >= minimumImageSize
+                    && canvas.height >= minimumImageSize
+                    && rect.width >= 24
+                    && rect.height >= 24;
+            };
+
             const candidateFromElement = (element) => {
                 if (!element) {
                     return null;
@@ -1169,8 +1182,7 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 return null;
             };
 
-            const visibleScore = (img) => {
-                const rect = img.getBoundingClientRect();
+            const visibleScoreForRect = (rect) => {
                 if (rect.bottom <= 0 || rect.right <= 0 || rect.top >= window.innerHeight || rect.left >= window.innerWidth) {
                     return -1;
                 }
@@ -1181,6 +1193,8 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 const dy = Math.abs(centerY - window.innerHeight / 2);
                 return (rect.width * rect.height) - (dx + dy);
             };
+
+            const visibleScore = (element) => visibleScoreForRect(element.getBoundingClientRect());
 
             const images = () => {
                 const seen = new Set();
@@ -1194,6 +1208,11 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                         seen.add(key);
                         return true;
                     });
+            };
+
+            const canvases = () => {
+                return Array.from(document.querySelectorAll("canvas"))
+                    .filter(isCandidateCanvas);
             };
 
             const normalizedURL = (value) => {
@@ -1217,6 +1236,12 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 return images()
                     .map((img) => ({ img, score: visibleScore(img) }))
                     .sort((a, b) => b.score - a.score)[0]?.img || null;
+            };
+
+            const bestCanvas = () => {
+                return canvases()
+                    .map((canvas) => ({ canvas, score: visibleScore(canvas) }))
+                    .sort((a, b) => b.score - a.score)[0]?.canvas || null;
             };
 
             const imageForURL = (value) => {
@@ -1255,6 +1280,18 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                 capturedAt: Date.now()
             });
 
+            const payloadForCanvas = (canvas, index = 0) => {
+                try {
+                    return {
+                        url: canvas.toDataURL("image/png"),
+                        filename: "chatgpt-canvas-" + String(index + 1) + ".png",
+                        capturedAt: Date.now()
+                    };
+                } catch (_) {
+                    return null;
+                }
+            };
+
             const backgroundPayloadForNode = (node) => {
                 if (!node || node.nodeType !== Node.ELEMENT_NODE) {
                     return null;
@@ -1288,6 +1325,29 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                     }
                     node = node.parentElement;
                 }
+                return null;
+            };
+
+            const canvasPayloadFromElement = (element) => {
+                if (!element || !element.closest) {
+                    return null;
+                }
+
+                const closest = element.closest("canvas");
+                if (isCandidateCanvas(closest)) {
+                    return payloadForCanvas(closest);
+                }
+
+                if (element.querySelectorAll) {
+                    const nested = Array.from(element.querySelectorAll("canvas"))
+                        .filter(isCandidateCanvas)
+                        .map((canvas, index) => ({ canvas, index, score: visibleScore(canvas) }))
+                        .sort((a, b) => b.score - a.score)[0];
+                    if (nested) {
+                        return payloadForCanvas(nested.canvas, nested.index);
+                    }
+                }
+
                 return null;
             };
 
@@ -1343,6 +1403,13 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                     });
             };
 
+            const canvasPayloads = () => {
+                return canvases()
+                    .slice(0, 40)
+                    .map(payloadForCanvas)
+                    .filter(Boolean);
+            };
+
             const imagePayloads = () => {
                 const seen = new Set();
                 const add = (payloads, payload) => {
@@ -1357,9 +1424,24 @@ struct ChatGPTWebContainer: UIViewRepresentable {
 
                 const payloads = [];
                 images().forEach((img, index) => add(payloads, payloadForImage(img, index)));
+                canvasPayloads().forEach((payload) => add(payloads, payload));
                 backgroundPayloads().forEach((payload) => add(payloads, payload));
                 linkPayloads().forEach((payload) => add(payloads, payload));
                 return payloads;
+            };
+
+            const bestVisiblePayload = () => {
+                const img = bestImage();
+                if (img) {
+                    return payloadForImage(img);
+                }
+
+                const canvas = bestCanvas();
+                if (canvas) {
+                    return payloadForCanvas(canvas);
+                }
+
+                return backgroundPayloads()[0] || linkPayloads()[0] || null;
             };
 
             const imageAtPoint = (x, y) => {
@@ -1368,6 +1450,11 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                     const image = candidateFromElement(element);
                     if (image) {
                         return payloadForImage(image);
+                    }
+
+                    const canvasPayload = canvasPayloadFromElement(element);
+                    if (canvasPayload) {
+                        return canvasPayload;
                     }
 
                     const backgroundPayload = backgroundPayloadFromElement(element);
@@ -1395,7 +1482,25 @@ struct ChatGPTWebContainer: UIViewRepresentable {
                     .filter((entry) => entry.distance <= 44)
                     .sort((a, b) => a.distance - b.distance || b.area - a.area)[0]?.img || null;
 
-                return nearby ? payloadForImage(nearby) : null;
+                if (nearby) {
+                    return payloadForImage(nearby);
+                }
+
+                const nearbyCanvas = canvases()
+                    .map((canvas) => {
+                        const rect = canvas.getBoundingClientRect();
+                        const clampedX = Math.max(rect.left, Math.min(x, rect.right));
+                        const clampedY = Math.max(rect.top, Math.min(y, rect.bottom));
+                        const dx = x - clampedX;
+                        const dy = y - clampedY;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        const contains = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+                        return { canvas, distance: contains ? 0 : distance, area: rect.width * rect.height };
+                    })
+                    .filter((entry) => entry.distance <= 60)
+                    .sort((a, b) => a.distance - b.distance || b.area - a.area)[0]?.canvas || null;
+
+                return nearbyCanvas ? payloadForCanvas(nearbyCanvas) : bestVisiblePayload();
             };
 
             const filenameFromURL = (value, fallback) => {
@@ -1574,6 +1679,7 @@ struct ChatGPTWebContainer: UIViewRepresentable {
             window.__gptNativeSaveAll = saveAll;
             window.__gptNativeSaveURL = saveContextURL;
             window.__gptNativeImageAtPoint = imageAtPoint;
+            window.__gptNativeBestImagePayload = bestVisiblePayload;
         })();
         """,
         injectionTime: .atDocumentEnd,
