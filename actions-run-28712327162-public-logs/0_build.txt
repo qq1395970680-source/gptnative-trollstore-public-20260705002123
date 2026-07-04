@@ -1,0 +1,534 @@
+﻿2026-07-04T16:23:29.8304730Z Current runner version: '2.335.1'
+2026-07-04T16:23:29.8336270Z ##[group]Runner Image Provisioner
+2026-07-04T16:23:29.8336890Z Hosted Compute Agent
+2026-07-04T16:23:29.8337270Z Version: 20260624.560
+2026-07-04T16:23:29.8337670Z Commit: 925d229a51159bc391ae97e54a2dd1fe20af789d
+2026-07-04T16:23:29.8338130Z Build Date: 2026-06-24T18:26:47Z
+2026-07-04T16:23:29.8338560Z Worker ID: {b51a1bab-e11d-40d5-b870-a512c25e53f0}
+2026-07-04T16:23:29.8339020Z Azure Region: westus
+2026-07-04T16:23:29.8339380Z ##[endgroup]
+2026-07-04T16:23:29.8341680Z ##[group]Operating System
+2026-07-04T16:23:29.8342070Z macOS
+2026-07-04T16:23:29.8342410Z 26.4
+2026-07-04T16:23:29.8342720Z 25E246
+2026-07-04T16:23:29.8343060Z ##[endgroup]
+2026-07-04T16:23:29.8343410Z ##[group]Runner Image
+2026-07-04T16:23:29.8343790Z Image: macos-26-arm64
+2026-07-04T16:23:29.8344150Z Version: 20260630.0213.1
+2026-07-04T16:23:29.8345180Z Included Software: https://github.com/actions/runner-images/blob/macos-26-arm64/20260630.0213/images/macos/macos-26-arm64-Readme.md
+2026-07-04T16:23:29.8347540Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-26-arm64%2F20260630.0213
+2026-07-04T16:23:29.8348190Z ##[endgroup]
+2026-07-04T16:23:29.8349030Z ##[group]GITHUB_TOKEN Permissions
+2026-07-04T16:23:29.8350780Z Contents: read
+2026-07-04T16:23:29.8351130Z Metadata: read
+2026-07-04T16:23:29.8352860Z Packages: read
+2026-07-04T16:23:29.8353240Z ##[endgroup]
+2026-07-04T16:23:29.8355110Z Secret source: Actions
+2026-07-04T16:23:29.8355730Z Prepare workflow directory
+2026-07-04T16:23:29.8720720Z Prepare all required actions
+2026-07-04T16:23:29.8749500Z Getting action download info
+2026-07-04T16:23:30.1205180Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-07-04T16:23:30.5036090Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-07-04T16:23:30.8275970Z Complete job name: build
+2026-07-04T16:23:30.9046790Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-04T16:23:30.9054910Z ##[group]Run actions/checkout@v4
+2026-07-04T16:23:30.9055530Z with:
+2026-07-04T16:23:30.9056030Z   repository: qq1395970680-source/gptnative-trollstore-public-20260705002123
+2026-07-04T16:23:30.9059180Z   token: ***
+2026-07-04T16:23:30.9059500Z   ssh-strict: true
+2026-07-04T16:23:30.9059810Z   ssh-user: git
+2026-07-04T16:23:30.9061020Z   persist-credentials: true
+2026-07-04T16:23:30.9062290Z   clean: true
+2026-07-04T16:23:30.9063550Z   sparse-checkout-cone-mode: true
+2026-07-04T16:23:30.9064650Z   fetch-depth: 1
+2026-07-04T16:23:30.9065650Z   fetch-tags: false
+2026-07-04T16:23:30.9066550Z   show-progress: true
+2026-07-04T16:23:30.9067890Z   lfs: false
+2026-07-04T16:23:30.9068880Z   submodules: false
+2026-07-04T16:23:30.9069840Z   set-safe-directory: true
+2026-07-04T16:23:30.9072420Z ##[endgroup]
+2026-07-04T16:23:31.5188810Z Syncing repository: qq1395970680-source/gptnative-trollstore-public-20260705002123
+2026-07-04T16:23:31.5192860Z ##[group]Getting Git version info
+2026-07-04T16:23:31.5194090Z Working directory is '/Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123'
+2026-07-04T16:23:31.5210170Z [command]/opt/homebrew/bin/git version
+2026-07-04T16:23:31.5711830Z git version 2.55.0
+2026-07-04T16:23:31.5748510Z ##[endgroup]
+2026-07-04T16:23:31.5807720Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/3c8bf340-f666-41c4-ac1c-e1dc71e92e79/.gitconfig'
+2026-07-04T16:23:31.5812490Z Temporarily overriding HOME='/Users/runner/work/_temp/3c8bf340-f666-41c4-ac1c-e1dc71e92e79' before making global git config changes
+2026-07-04T16:23:31.5826310Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-04T16:23:31.5831960Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:23:31.5989450Z Deleting the contents of '/Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123'
+2026-07-04T16:23:31.5998550Z ##[group]Initializing the repository
+2026-07-04T16:23:31.6010330Z [command]/opt/homebrew/bin/git init /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:23:31.6419670Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-07-04T16:23:31.6432060Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-07-04T16:23:31.6434080Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-07-04T16:23:31.6443110Z hint: call:
+2026-07-04T16:23:31.6451310Z hint:
+2026-07-04T16:23:31.6497220Z hint: 	git config --global init.defaultBranch <name>
+2026-07-04T16:23:31.6498620Z hint:
+2026-07-04T16:23:31.6499570Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-07-04T16:23:31.6504760Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-07-04T16:23:31.6509550Z hint:
+2026-07-04T16:23:31.6510390Z hint: 	git branch -m <name>
+2026-07-04T16:23:31.6514270Z hint:
+2026-07-04T16:23:31.6515430Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-07-04T16:23:31.6518710Z Initialized empty Git repository in /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/.git/
+2026-07-04T16:23:31.6531960Z [command]/opt/homebrew/bin/git remote add origin https://github.com/qq1395970680-source/gptnative-trollstore-public-20260705002123
+2026-07-04T16:23:31.6607250Z ##[endgroup]
+2026-07-04T16:23:31.6613190Z ##[group]Disabling automatic garbage collection
+2026-07-04T16:23:31.6617190Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-07-04T16:23:31.6754790Z ##[endgroup]
+2026-07-04T16:23:31.6755650Z ##[group]Setting up auth
+2026-07-04T16:23:31.6757210Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-04T16:23:31.6866730Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-04T16:23:31.8651110Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-04T16:23:31.8680600Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-04T16:23:31.9957850Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-04T16:23:32.0040940Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-04T16:23:32.1402040Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-07-04T16:23:32.1537850Z ##[endgroup]
+2026-07-04T16:23:32.1541740Z ##[group]Fetching the repository
+2026-07-04T16:23:32.1571060Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e763d34ec767575939eb801560178f98f5199588:refs/remotes/origin/main
+2026-07-04T16:23:33.0260410Z From https://github.com/qq1395970680-source/gptnative-trollstore-public-20260705002123
+2026-07-04T16:23:33.0273300Z  * [new ref]         e763d34ec767575939eb801560178f98f5199588 -> origin/main
+2026-07-04T16:23:33.0276460Z ##[endgroup]
+2026-07-04T16:23:33.0277860Z ##[group]Determining the checkout info
+2026-07-04T16:23:33.0285270Z ##[endgroup]
+2026-07-04T16:23:33.0290000Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-07-04T16:23:33.0394320Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-07-04T16:23:33.0471750Z ##[group]Checking out the ref
+2026-07-04T16:23:33.0473700Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-07-04T16:23:33.0712880Z Switched to a new branch 'main'
+2026-07-04T16:23:33.0718240Z branch 'main' set up to track 'origin/main'.
+2026-07-04T16:23:33.0721720Z ##[endgroup]
+2026-07-04T16:23:33.0866630Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-07-04T16:23:33.0948400Z e763d34ec767575939eb801560178f98f5199588
+2026-07-04T16:23:33.1222730Z ##[group]Run brew update
+2026-07-04T16:23:33.1223670Z [36;1mbrew update[0m
+2026-07-04T16:23:33.1224430Z [36;1mbrew install xcodegen ldid[0m
+2026-07-04T16:23:33.1265070Z shell: /bin/bash -e {0}
+2026-07-04T16:23:33.1265830Z ##[endgroup]
+2026-07-04T16:23:34.9204470Z [34m==>[0m [1mUpdating Homebrew...[0m
+2026-07-04T16:24:03.6115190Z To restore the stashed changes to /opt/homebrew/Library/Taps/homebrew/homebrew-core, run:
+2026-07-04T16:24:03.6214600Z   cd /opt/homebrew/Library/Taps/homebrew/homebrew-core && git stash pop
+2026-07-04T16:24:06.3962650Z [34m==>[0m [1mHomebrew's analytics have entirely moved to our InfluxDB instance in the EU.[0m
+2026-07-04T16:24:06.4058090Z We gather less data than before and have destroyed all Google Analytics data:
+2026-07-04T16:24:06.4183390Z   [4mhttps://docs.brew.sh/Analytics[24m[0m
+2026-07-04T16:24:06.4296590Z Please reconsider re-enabling analytics to help our volunteer maintainers with:
+2026-07-04T16:24:06.4401380Z   brew analytics on
+2026-07-04T16:24:06.4601290Z [34m==>[0m [1mHomebrew is run entirely by unpaid volunteers. Please consider donating:[0m
+2026-07-04T16:24:06.4703650Z   [4mhttps://github.com/Homebrew/brew#donations[24m
+2026-07-04T16:24:06.4810230Z 
+2026-07-04T16:24:07.6185540Z Updated 3 taps (hashicorp/tap, homebrew/core and homebrew/cask).
+2026-07-04T16:24:07.6263640Z [34m==>[0m [1mNew Formulae[0m
+2026-07-04T16:24:08.3282530Z adrs: Architectural Decision Record tool in Rust
+2026-07-04T16:24:08.3385880Z ai-cli: Generate images, video, audio, and text from the terminal
+2026-07-04T16:24:08.3491770Z asar: SNES assembler for applying patches to ROM images or building ROMs
+2026-07-04T16:24:08.3588120Z cve-bin-tool: Scans binaries and SBOMs for known vulnerabilities and prepares reports
+2026-07-04T16:24:08.3688960Z diskwatch: Cross-platform disk diagnostics TUI
+2026-07-04T16:24:08.3790640Z epics-base: Experimental Physics and Industrial Control System
+2026-07-04T16:24:08.3892340Z hunk: Review-first terminal diff viewer for agent-authored changesets
+2026-07-04T16:24:08.3994780Z kubectl-klock: Kubectl plugin to render watch output in a more readable fashion
+2026-07-04T16:24:08.4096150Z msdfgen: Multi-channel signed distance field generator
+2026-07-04T16:24:08.4198790Z prrte: PMIx Reference RunTime Environment
+2026-07-04T16:24:08.4300710Z rancher-machine: Machine management for a container-centric world
+2026-07-04T16:24:08.4339670Z sbom-utility: Tool to validate, analyze, query and edit Software Bills of Materials (SBOMs)
+2026-07-04T16:24:08.4349370Z vsview: Next-generation VapourSynth previewer
+2026-07-04T16:24:08.4357110Z [34m==>[0m [1mNew Casks[0m
+2026-07-04T16:24:08.9222360Z gitcomet: Git GUI
+2026-07-04T16:24:08.9225480Z gnome: Menu bar GIF search and creation tool
+2026-07-04T16:24:08.9228400Z harper-desktop: Grammar checker for developers
+2026-07-04T16:24:08.9234700Z pique: Quick Look extension for syntax-highlighted file previews
+2026-07-04T16:24:08.9248150Z pocket-bard: TTRPG ambient audio and sound effects
+2026-07-04T16:24:08.9279380Z sonarqube-cli: Code quality and security for terminal workflows, scripts, and AI agents
+2026-07-04T16:24:08.9280020Z subtitle-studio: Offline AI subtitle generator
+2026-07-04T16:24:10.0744740Z [34m==>[0m [1mOutdated Formulae[0m
+2026-07-04T16:24:10.0745460Z aws-sam-cli
+2026-07-04T16:24:10.0745880Z gh
+2026-07-04T16:24:10.0746620Z gnupg
+2026-07-04T16:24:10.0747010Z gradle-completion
+2026-07-04T16:24:10.0755980Z jpeg-turbo
+2026-07-04T16:24:10.0756230Z libtiff
+2026-07-04T16:24:10.0756510Z openssl@3
+2026-07-04T16:24:10.0756780Z pinentry
+2026-07-04T16:24:10.0756990Z rpds-py
+2026-07-04T16:24:10.0757290Z ruby@3.4
+2026-07-04T16:24:10.0757470Z rustup
+2026-07-04T16:24:10.0757840Z [34m==>[0m [1mOutdated Casks[0m
+2026-07-04T16:24:10.0758090Z firefox
+2026-07-04T16:24:10.0758390Z google-chrome
+2026-07-04T16:24:10.0758790Z microsoft-edge
+2026-07-04T16:24:10.0759030Z 
+2026-07-04T16:24:10.0759330Z You have [1m11[0m outdated formulae and [1m3[0m outdated casks installed.
+2026-07-04T16:24:10.0760190Z You can upgrade them with [1mbrew upgrade[0m
+2026-07-04T16:24:10.0760740Z or list them with [1mbrew outdated[0m.
+2026-07-04T16:24:13.5612290Z ##[warning]The following taps are not trusted:
+  aws/tap
+
+Homebrew is currently ignoring formulae, casks and commands from these taps because tap trust is required.
+Untap them with:
+  brew untap aws/tap
+Trust specific formulae, casks and commands with:
+  brew trust --formula <user>/<tap>/<formula>
+  brew trust --cask <user>/<tap>/<cask>
+  brew trust --command <user>/<tap>/<command>
+Whole-tap trust is broader and includes all current and future formulae,
+casks and commands from the listed taps. Trust whole taps with:
+  brew trust aws/tap
+To disable trust checks:
+  export HOMEBREW_NO_REQUIRE_TAP_TRUST=1
+This is not recommended and will be removed in a later release.
+For more information, see:
+  https://docs.brew.sh/Tap-Trust
+
+2026-07-04T16:24:14.3045310Z [34m==>[0m [1mWould install 2 formulae:[0m
+2026-07-04T16:24:14.3149090Z xcodegen ldid
+2026-07-04T16:24:14.3251470Z [34m==>[0m [1mDownloading https://ghcr.io/v2/homebrew/core/xcodegen/manifests/2.45.4[0m
+2026-07-04T16:24:14.7109830Z [34m==>[0m [1mDownloading https://ghcr.io/v2/homebrew/core/ldid/manifests/2.1.5_1-1[0m
+2026-07-04T16:24:15.1914010Z [34m==>[0m [1mWould install 2 dependencies for ldid:[0m
+2026-07-04T16:24:15.2012340Z libplist
+2026-07-04T16:24:15.2113380Z openssl@3
+2026-07-04T16:24:15.2214880Z [32m==>[0m [1mFetching downloads for: [32mxcodegen[39m and [32mldid[39m[0m
+2026-07-04T16:24:15.7094110Z ✔︎ Bottle Manifest libplist (2.7.0)
+2026-07-04T16:24:15.7198760Z ✔︎ Bottle Manifest openssl@3 (3.6.3)
+2026-07-04T16:24:15.9124370Z ✔︎ Bottle libplist (2.7.0)
+2026-07-04T16:24:15.9692760Z ✔︎ Bottle xcodegen (2.45.4)
+2026-07-04T16:24:15.9798870Z ✔︎ Bottle ldid (2.1.5_1)
+2026-07-04T16:24:17.6667680Z ✔︎ Bottle openssl@3 (3.6.3)
+2026-07-04T16:24:17.7884690Z [34m==>[0m [1mPouring xcodegen--2.45.4.arm64_tahoe.bottle.tar.gz[0m
+2026-07-04T16:24:17.9753330Z 🍺  /opt/homebrew/Cellar/xcodegen/2.45.4: 38 files, 7.4MB
+2026-07-04T16:24:18.0287210Z [32m==>[0m [1mInstalling ldid dependency: [32mlibplist[39m[0m
+2026-07-04T16:24:18.0433780Z [34m==>[0m [1mPouring libplist--2.7.0.arm64_tahoe.bottle.tar.gz[0m
+2026-07-04T16:24:18.3289870Z 🍺  /opt/homebrew/Cellar/libplist/2.7.0: 32 files, 658.3KB
+2026-07-04T16:24:18.3424840Z [34m==>[0m [1mPouring ldid--2.1.5_1.arm64_tahoe.bottle.1.tar.gz[0m
+2026-07-04T16:24:18.4780360Z 🍺  /opt/homebrew/Cellar/ldid/2.1.5_1: 6 files, 287.7KB
+2026-07-04T16:24:18.5412230Z ##[group]Run chmod +x Scripts/build_ipa_macos.sh
+2026-07-04T16:24:18.5413810Z [36;1mchmod +x Scripts/build_ipa_macos.sh[0m
+2026-07-04T16:24:18.5414770Z [36;1mScripts/build_ipa_macos.sh[0m
+2026-07-04T16:24:18.5825140Z shell: /bin/bash -e {0}
+2026-07-04T16:24:18.5825420Z ##[endgroup]
+2026-07-04T16:24:29.6332320Z ⚙️  Generating plists...
+2026-07-04T16:24:29.6353550Z ⚙️  Generating project...
+2026-07-04T16:24:29.6628940Z ⚙️  Writing project...
+2026-07-04T16:24:29.6767960Z Created project at /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/GPTNative.xcodeproj
+2026-07-04T16:24:32.5506510Z Command line invocation:
+2026-07-04T16:24:32.5567460Z     /Applications/Xcode_26.5.app/Contents/Developer/usr/bin/xcodebuild -project GPTNative.xcodeproj -scheme GPTNative -configuration Release -sdk iphoneos -derivedDataPath build/DerivedData CODE_SIGNING_ALLOWED=NO build
+2026-07-04T16:24:32.6078920Z 
+2026-07-04T16:24:32.6081720Z Build settings from command line:
+2026-07-04T16:24:32.6083010Z     CODE_SIGNING_ALLOWED = NO
+2026-07-04T16:24:32.6084540Z     SDKROOT = iphoneos26.5
+2026-07-04T16:24:32.6085030Z 
+2026-07-04T16:24:37.9917820Z 2026-07-04 16:24:37.985 xcodebuild[3597:11985] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-07-04T16:24:38.0344000Z --- xcodebuild: WARNING: Using the first of multiple matching destinations:
+2026-07-04T16:24:38.0448990Z { platform:iOS, id:dvtdevice-DVTiPhonePlaceholder-iphoneos:placeholder, name:Any iOS Device }
+2026-07-04T16:24:38.0559170Z { platform:macOS, arch:arm64, variant:Designed for [iPad,iPhone], id:d334728d5a412042a5ed421e15438a705c60f8af, name:My Mac }
+2026-07-04T16:24:38.0660990Z { platform:iOS Simulator, id:dvtdevice-DVTiOSDeviceSimulatorPlaceholder-iphonesimulator:placeholder, name:Any iOS Simulator Device }
+2026-07-04T16:24:39.3175210Z ComputePackagePrebuildTargetDependencyGraph
+2026-07-04T16:24:39.3853260Z 
+2026-07-04T16:24:39.3886650Z Prepare packages
+2026-07-04T16:24:39.3887710Z 
+2026-07-04T16:24:39.3937570Z CreateBuildRequest
+2026-07-04T16:24:39.3937860Z 
+2026-07-04T16:24:39.3943360Z SendProjectDescription
+2026-07-04T16:24:39.4018890Z 
+2026-07-04T16:24:39.4020240Z CreateBuildOperation
+2026-07-04T16:24:39.4079560Z 
+2026-07-04T16:24:39.4123730Z ComputeTargetDependencyGraph
+2026-07-04T16:24:39.4372150Z note: Building targets in dependency order
+2026-07-04T16:24:39.4373200Z note: Target dependency graph (1 target)
+2026-07-04T16:24:39.4374350Z     Target 'GPTNative' in project 'GPTNative' (no dependencies)
+2026-07-04T16:24:39.4374810Z 
+2026-07-04T16:24:39.4375070Z GatherProvisioningInputs
+2026-07-04T16:24:39.4376040Z 
+2026-07-04T16:24:39.4433000Z CreateBuildDescription
+2026-07-04T16:24:39.4724490Z 
+2026-07-04T16:24:39.4730240Z ExecuteExternalTool /Applications/Xcode_26.5.app/Contents/Developer/usr/bin/ibtool --version --output-format xml1
+2026-07-04T16:24:42.5115410Z 
+2026-07-04T16:24:42.5126120Z ExecuteExternalTool /Applications/Xcode_26.5.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Resources/Assets.xcassets
+2026-07-04T16:24:42.5532540Z 
+2026-07-04T16:24:42.5650500Z ExecuteExternalTool /Applications/Xcode_26.5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode_26.5.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.5.sdk -x c -c /dev/null
+2026-07-04T16:24:42.5704620Z 
+2026-07-04T16:24:42.5705540Z ExecuteExternalTool /Applications/Xcode_26.5.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+2026-07-04T16:24:42.5807990Z 
+2026-07-04T16:24:42.5913670Z ExecuteExternalTool /Applications/Xcode_26.5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+2026-07-04T16:24:44.5102000Z 
+2026-07-04T16:24:44.5298710Z ExecuteExternalTool /Applications/Xcode_26.5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+2026-07-04T16:24:44.8812470Z 
+2026-07-04T16:24:44.9301140Z Build description signature: b3775e834cae26421b1fe52d62313cd5
+2026-07-04T16:24:44.9337690Z Build description path: /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/XCBuildData/b3775e834cae26421b1fe52d62313cd5.xcbuilddata
+2026-07-04T16:24:45.0158400Z CreateBuildDirectory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Products
+2026-07-04T16:24:45.0286080Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/GPTNative.xcodeproj
+2026-07-04T16:24:45.0414100Z     builtin-create-build-directory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Products
+2026-07-04T16:24:45.0519180Z 
+2026-07-04T16:24:45.0847430Z CreateBuildDirectory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex
+2026-07-04T16:24:45.0887410Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/GPTNative.xcodeproj
+2026-07-04T16:24:45.0990370Z     builtin-create-build-directory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex
+2026-07-04T16:24:45.1012310Z 
+2026-07-04T16:24:45.1017370Z ClangStatCache /Applications/Xcode_26.5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_26.5.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.5.sdk /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/SDKStatCaches.noindex/iphoneos26.5-23F73-688ef53f1462e2c8f657fdc38a81448f67b36cc14858027d908dabaffc6b2e8d.sdkstatcache
+2026-07-04T16:24:45.1022850Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/GPTNative.xcodeproj
+2026-07-04T16:24:45.1038000Z     /Applications/Xcode_26.5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_26.5.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.5.sdk -o /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/SDKStatCaches.noindex/iphoneos26.5-23F73-688ef53f1462e2c8f657fdc38a81448f67b36cc14858027d908dabaffc6b2e8d.sdkstatcache
+2026-07-04T16:24:50.5657210Z 
+2026-07-04T16:24:50.5675180Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative-e32b3fc7815c7ea026b445acefe41817-VFS-iphoneos/all-product-headers.yaml
+2026-07-04T16:24:50.5692630Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/GPTNative.xcodeproj
+2026-07-04T16:24:50.5695870Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative-e32b3fc7815c7ea026b445acefe41817-VFS-iphoneos/all-product-headers.yaml
+2026-07-04T16:24:50.5700040Z 
+2026-07-04T16:24:50.5705250Z CreateBuildDirectory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Products/Release-iphoneos
+2026-07-04T16:24:50.5710070Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/GPTNative.xcodeproj
+2026-07-04T16:24:50.5722400Z     builtin-create-build-directory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Products/Release-iphoneos
+2026-07-04T16:24:50.5725570Z 
+2026-07-04T16:24:50.5726400Z CreateBuildDirectory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+2026-07-04T16:24:50.5727830Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/GPTNative.xcodeproj
+2026-07-04T16:24:50.5730100Z     builtin-create-build-directory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+2026-07-04T16:24:50.5730950Z 
+2026-07-04T16:24:50.5731690Z CreateBuildDirectory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/ExplicitPrecompiledModules
+2026-07-04T16:24:50.5754640Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/GPTNative.xcodeproj
+2026-07-04T16:24:50.5759870Z     builtin-create-build-directory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/ExplicitPrecompiledModules
+2026-07-04T16:24:50.5763130Z 
+2026-07-04T16:24:50.5764320Z CreateBuildDirectory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Release-iphoneos
+2026-07-04T16:24:50.5767630Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/GPTNative.xcodeproj
+2026-07-04T16:24:50.5770740Z     builtin-create-build-directory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Release-iphoneos
+2026-07-04T16:24:50.5772800Z 
+2026-07-04T16:24:50.5775520Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative_const_extract_protocols.json (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5779420Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5783570Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative_const_extract_protocols.json
+2026-07-04T16:24:50.5786480Z 
+2026-07-04T16:24:50.5789890Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative.SwiftFileList (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5795800Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5799380Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative.SwiftFileList
+2026-07-04T16:24:50.5800520Z 
+2026-07-04T16:24:50.5804910Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative.SwiftConstValuesFileList (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5807480Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5808760Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative.SwiftConstValuesFileList
+2026-07-04T16:24:50.5809730Z 
+2026-07-04T16:24:50.5810970Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative.LinkFileList (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5813330Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5816110Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative.LinkFileList
+2026-07-04T16:24:50.5817040Z 
+2026-07-04T16:24:50.5818030Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative-OutputFileMap.json (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5820180Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5821560Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative-OutputFileMap.json
+2026-07-04T16:24:50.5822570Z 
+2026-07-04T16:24:50.5823450Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative.hmap (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5836140Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5837950Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative.hmap
+2026-07-04T16:24:50.5838820Z 
+2026-07-04T16:24:50.5840180Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative.DependencyStaticMetadataFileList (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5841620Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5843040Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative.DependencyStaticMetadataFileList
+2026-07-04T16:24:50.5844110Z 
+2026-07-04T16:24:50.5847960Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative.DependencyMetadataFileList (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5851200Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5855760Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative.DependencyMetadataFileList
+2026-07-04T16:24:50.5858270Z 
+2026-07-04T16:24:50.5860820Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-project-headers.hmap (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5869430Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5870710Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-project-headers.hmap
+2026-07-04T16:24:50.5872030Z 
+2026-07-04T16:24:50.5874230Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-own-target-headers.hmap (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5879290Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5882960Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-own-target-headers.hmap
+2026-07-04T16:24:50.5885670Z 
+2026-07-04T16:24:50.5887460Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-generated-files.hmap (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5888810Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5890040Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-generated-files.hmap
+2026-07-04T16:24:50.5890920Z 
+2026-07-04T16:24:50.5891870Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-all-target-headers.hmap (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5893230Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5896030Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-all-target-headers.hmap
+2026-07-04T16:24:50.5902010Z 
+2026-07-04T16:24:50.5908130Z WriteAuxiliaryFile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-all-non-framework-target-headers.hmap (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5909630Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5912370Z     write-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-all-non-framework-target-headers.hmap
+2026-07-04T16:24:50.5915040Z 
+2026-07-04T16:24:50.5918000Z MkDir /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Products/Release-iphoneos/GPTNative.app (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5922940Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5926530Z     /bin/mkdir -p /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Products/Release-iphoneos/GPTNative.app
+2026-07-04T16:24:50.5927940Z 
+2026-07-04T16:24:50.5931800Z MkDir /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/assetcatalog_output/unthinned (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5933980Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5935150Z     /bin/mkdir -p /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/assetcatalog_output/unthinned
+2026-07-04T16:24:50.5936030Z 
+2026-07-04T16:24:50.5936940Z MkDir /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/assetcatalog_output/thinned (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5938160Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5939450Z     /bin/mkdir -p /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/assetcatalog_output/thinned
+2026-07-04T16:24:50.5940450Z 
+2026-07-04T16:24:50.5942280Z GenerateAssetSymbols /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Resources/Assets.xcassets (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5945710Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5959820Z     /Applications/Xcode_26.5.app/Contents/Developer/usr/bin/actool /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Resources/Assets.xcassets --compile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Products/Release-iphoneos/GPTNative.app --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/assetcatalog_dependencies --output-partial-info-plist /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/assetcatalog_generated_info.plist --app-icon AppIcon --compress-pngs --enable-on-demand-resources YES --development-region en --target-device iphone --minimum-deployment-target 16.0 --platform iphoneos --bundle-identifier local.codex.gptnative --generate-swift-asset-symbol-extensions NO --generate-swift-asset-symbols /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+2026-07-04T16:24:50.5976170Z /* com.apple.actool.compilation-results */
+2026-07-04T16:24:50.5979920Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+2026-07-04T16:24:50.5986370Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/DerivedSources/GeneratedAssetSymbols.h
+2026-07-04T16:24:50.5988340Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/DerivedSources/GeneratedAssetSymbols.swift
+2026-07-04T16:24:50.5989400Z 
+2026-07-04T16:24:50.5989400Z 
+2026-07-04T16:24:50.5990110Z CompileStoryboard /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Resources/LaunchScreen.storyboard (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:50.5991120Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:50.5997040Z     /Applications/Xcode_26.5.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --module GPTNative --output-partial-info-plist /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/LaunchScreen-SBPartialInfo.plist --auto-activate-custom-fonts --target-device iphone --minimum-deployment-target 16.0 --output-format human-readable-text /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Resources/LaunchScreen.storyboard --compilation-directory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build
+2026-07-04T16:24:55.0520850Z 
+2026-07-04T16:24:55.0685780Z CompileAssetCatalogVariant thinned /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Products/Release-iphoneos/GPTNative.app /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Resources/Assets.xcassets (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:55.0702460Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:55.0832740Z     /Applications/Xcode_26.5.app/Contents/Developer/usr/bin/actool /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Resources/Assets.xcassets --compile /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --compress-pngs --enable-on-demand-resources YES --development-region en --target-device iphone --minimum-deployment-target 16.0 --platform iphoneos
+2026-07-04T16:24:59.0413140Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:786:23: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.0518150Z                     "\u65b0\u804a\u5929",
+2026-07-04T16:24:59.0621390Z                       ^
+2026-07-04T16:24:59.0723850Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:786:29: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.0826280Z                     "\u65b0\u804a\u5929",
+2026-07-04T16:24:59.0928470Z                             ^
+2026-07-04T16:24:59.1029150Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:786:35: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.1143600Z                     "\u65b0\u804a\u5929",
+2026-07-04T16:24:59.1257010Z                                   ^
+2026-07-04T16:24:59.1365110Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:787:23: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.1475730Z                     "\u641c\u7d22\u804a\u5929",
+2026-07-04T16:24:59.1578230Z                       ^
+2026-07-04T16:24:59.1659150Z 
+2026-07-04T16:24:59.1680410Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:787:29: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.1778410Z SwiftDriver GPTNative normal arm64 com.apple.xcode.tools.swift.compiler (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.1795710Z                     "\u641c\u7d22\u804a\u5929",
+2026-07-04T16:24:59.1993380Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:59.2023730Z                             ^
+2026-07-04T16:24:59.2208870Z     builtin-SwiftDriver -- /Applications/Xcode_26.5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name GPTNative -O -whole-module-optimization @/Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative.SwiftFileList -DCHATGPT_WEB_LOGIN -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.5.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.5.sdk -target arm64-apple-ios16.0 -g -module-cache-path /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Products/Release-iphoneos -F /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Products/Release-iphoneos -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/SDKStatCaches.noindex/iphoneos26.5-23F73-688ef53f1462e2c8f657fdc38a81448f67b36cc14858027d908dabaffc6b2e8d.sdkstatcache -output-file-map /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-generated-files.hmap -Xcc -I/Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-own-target-headers.hmap -Xcc -I/Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/GPTNative-project-headers.hmap -Xcc -I/Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Products/Release-iphoneos/include -Xcc -I/Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/Objects-normal/arm64/GPTNative-Swift.h -working-directory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123 -no-emit-module-separately-wmo
+2026-07-04T16:24:59.2275990Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:787:35: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2296680Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:786:23: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2299260Z                     "\u65b0\u804a\u5929",
+2026-07-04T16:24:59.2299680Z                       ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.2302680Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:786:29: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2303560Z                     "\u65b0\u804a\u5929",
+2026-07-04T16:24:59.2304870Z                             ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.2305770Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:786:35: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2310850Z                     "\u65b0\u804a\u5929",
+2026-07-04T16:24:59.2311400Z                                   ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.2312480Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:787:23: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2318530Z                     "\u641c\u7d22\u804a\u5929",
+2026-07-04T16:24:59.2319110Z                       ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.2320120Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:787:29: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2335110Z                     "\u641c\u7d22\u804a\u5929",
+2026-07-04T16:24:59.2335660Z                             ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.2340220Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:787:35: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2341160Z                     "\u641c\u7d22\u804a\u5929",
+2026-07-04T16:24:59.2342490Z                                   ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.2348380Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:787:41: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2349240Z                     "\u641c\u7d22\u804a\u5929",
+2026-07-04T16:24:59.2351430Z                                         ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.2354360Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:788:23: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2356900Z                     "\u6587\u4ef6\u5e93",
+2026-07-04T16:24:59.2357780Z                       ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.2381550Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:788:29: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2382370Z                     "\u6587\u4ef6\u5e93",
+2026-07-04T16:24:59.2717750Z                             ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.2718840Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:788:35: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2719550Z                     "\u6587\u4ef6\u5e93",
+2026-07-04T16:24:59.2719930Z                                   ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.2720800Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:789:23: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2721490Z                     "\u9879\u76ee",
+2026-07-04T16:24:59.2722470Z                       ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.2723340Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:789:29: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.2724300Z                     "\u9879\u76ee",
+2026-07-04T16:24:59.2724560Z                             ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.3037170Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:790:23: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3039230Z                     "\u5df2\u5b89\u6392",
+2026-07-04T16:24:59.3039640Z                       ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.3139100Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:790:29: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3143690Z                     "\u5df2\u5b89\u6392",
+2026-07-04T16:24:59.3144830Z                             ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.3208760Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:790:35: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3438730Z                     "\u5df2\u5b89\u6392",
+2026-07-04T16:24:59.3439290Z                                   ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.3440230Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:791:23: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3440930Z                     "\u5e94\u7528",
+2026-07-04T16:24:59.3441510Z                       ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.3442510Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:791:29: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3443550Z                     "\u5e94\u7528",
+2026-07-04T16:24:59.3443860Z                             ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.3445350Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:792:23: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3496110Z                     "\u66f4\u591a",
+2026-07-04T16:24:59.3496380Z                       ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.3498070Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:792:29: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3498990Z                     "\u66f4\u591a",
+2026-07-04T16:24:59.3499430Z                             ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.3500540Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:793:23: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3501320Z                     "\u6700\u8fd1"
+2026-07-04T16:24:59.3501840Z                       ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.3502810Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:793:29: error: Expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3503580Z                     "\u6700\u8fd1"
+2026-07-04T16:24:59.3512420Z                             ^ (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.3512630Z 
+2026-07-04T16:24:59.3512760Z LinkStoryboards (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.3513400Z     cd /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:24:59.3515790Z     /Applications/Xcode_26.5.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --module GPTNative --target-device iphone --minimum-deployment-target 16.0 --output-format human-readable-text --link /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Products/Release-iphoneos/GPTNative.app /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/build/DerivedData/Build/Intermediates.noindex/GPTNative.build/Release-iphoneos/GPTNative.build/LaunchScreen.storyboardc
+2026-07-04T16:24:59.3517950Z 
+2026-07-04T16:24:59.3518130Z                     "\u641c\u7d22\u804a\u5929",
+2026-07-04T16:24:59.3518410Z                                   ^
+2026-07-04T16:24:59.3519280Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:787:41: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3520090Z                     "\u641c\u7d22\u804a\u5929",
+2026-07-04T16:24:59.3520300Z                                         ^
+2026-07-04T16:24:59.3525750Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:788:23: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3528980Z                     "\u6587\u4ef6\u5e93",
+2026-07-04T16:24:59.3529290Z                       ^
+2026-07-04T16:24:59.3530110Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:788:29: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3530830Z                     "\u6587\u4ef6\u5e93",
+2026-07-04T16:24:59.3531170Z                             ^
+2026-07-04T16:24:59.3561860Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:788:35: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3564280Z                     "\u6587\u4ef6\u5e93",
+2026-07-04T16:24:59.3564560Z                                   ^
+2026-07-04T16:24:59.3565260Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:789:23: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3566570Z                     "\u9879\u76ee",
+2026-07-04T16:24:59.3566880Z                       ^
+2026-07-04T16:24:59.3568030Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:789:29: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3568800Z                     "\u9879\u76ee",
+2026-07-04T16:24:59.3568990Z                             ^
+2026-07-04T16:24:59.3569710Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:790:23: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3570450Z                     "\u5df2\u5b89\u6392",
+2026-07-04T16:24:59.3570660Z                       ^
+2026-07-04T16:24:59.3571360Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:790:29: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3572100Z                     "\u5df2\u5b89\u6392",
+2026-07-04T16:24:59.3572340Z                             ^
+2026-07-04T16:24:59.3573370Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:790:35: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3574080Z                     "\u5df2\u5b89\u6392",
+2026-07-04T16:24:59.3574370Z                                   ^
+2026-07-04T16:24:59.3575100Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:791:23: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3575850Z                     "\u5e94\u7528",
+2026-07-04T16:24:59.3576020Z                       ^
+2026-07-04T16:24:59.3576760Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:791:29: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3577500Z                     "\u5e94\u7528",
+2026-07-04T16:24:59.3577740Z                             ^
+2026-07-04T16:24:59.3578420Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:792:23: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3579170Z                     "\u66f4\u591a",
+2026-07-04T16:24:59.3579420Z                       ^
+2026-07-04T16:24:59.3580120Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:792:29: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3580870Z                     "\u66f4\u591a",
+2026-07-04T16:24:59.3581130Z                             ^
+2026-07-04T16:24:59.3581840Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:793:23: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3582640Z                     "\u6700\u8fd1"
+2026-07-04T16:24:59.3582870Z                       ^
+2026-07-04T16:24:59.3583620Z /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123/Sources/ChatGPTWebView.swift:793:29: error: expected hexadecimal code in braces after unicode escape
+2026-07-04T16:24:59.3584360Z                     "\u6700\u8fd1"
+2026-07-04T16:24:59.3584580Z                             ^
+2026-07-04T16:24:59.3584810Z ** BUILD FAILED **
+2026-07-04T16:24:59.3584950Z 
+2026-07-04T16:24:59.3584950Z 
+2026-07-04T16:24:59.3585030Z The following build commands failed:
+2026-07-04T16:24:59.3594320Z 	SwiftDriver GPTNative normal arm64 com.apple.xcode.tools.swift.compiler (in target 'GPTNative' from project 'GPTNative')
+2026-07-04T16:24:59.3679510Z 	Building project GPTNative with scheme GPTNative and configuration Release
+2026-07-04T16:24:59.3679910Z (2 failures)
+2026-07-04T16:24:59.3859780Z ##[error]Process completed with exit code 65.
+2026-07-04T16:24:59.5167820Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-04T16:24:59.5169420Z Post job cleanup.
+2026-07-04T16:25:00.5621390Z [command]/opt/homebrew/bin/git version
+2026-07-04T16:25:00.6404690Z git version 2.55.0
+2026-07-04T16:25:00.7099710Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/1e0f05fd-706c-4610-a67c-0f10ad06b4f1/.gitconfig'
+2026-07-04T16:25:00.7210430Z Temporarily overriding HOME='/Users/runner/work/_temp/1e0f05fd-706c-4610-a67c-0f10ad06b4f1' before making global git config changes
+2026-07-04T16:25:00.7332310Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-04T16:25:00.7455580Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/gptnative-trollstore-public-20260705002123/gptnative-trollstore-public-20260705002123
+2026-07-04T16:25:00.7795390Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-04T16:25:00.8119890Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-04T16:25:01.1633250Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-04T16:25:01.1758600Z http.https://github.com/.extraheader
+2026-07-04T16:25:01.2063040Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-07-04T16:25:01.2374380Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-04T16:25:01.4357280Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-04T16:25:01.4662630Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-04T16:25:01.6922830Z Cleaning up orphan processes
+2026-07-04T16:25:02.5367660Z Terminate orphan process: pid (3823) (ibtoold)
+2026-07-04T16:25:02.6225170Z Terminate orphan process: pid (3822) (ibtoold)
+2026-07-04T16:25:03.4553400Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

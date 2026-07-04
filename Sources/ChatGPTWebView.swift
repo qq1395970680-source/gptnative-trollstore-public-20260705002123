@@ -783,14 +783,14 @@ struct ChatGPTWebContainer: UIViewRepresentable {
 
                 const text = (element.textContent || "").slice(0, 240);
                 const drawerLabels = [
-                    "\u65b0\u804a\u5929",
-                    "\u641c\u7d22\u804a\u5929",
-                    "\u6587\u4ef6\u5e93",
-                    "\u9879\u76ee",
-                    "\u5df2\u5b89\u6392",
-                    "\u5e94\u7528",
-                    "\u66f4\u591a",
-                    "\u6700\u8fd1"
+                    String.fromCharCode(0x65b0, 0x804a, 0x5929),
+                    String.fromCharCode(0x641c, 0x7d22, 0x804a, 0x5929),
+                    String.fromCharCode(0x6587, 0x4ef6, 0x5e93),
+                    String.fromCharCode(0x9879, 0x76ee),
+                    String.fromCharCode(0x5df2, 0x5b89, 0x6392),
+                    String.fromCharCode(0x5e94, 0x7528),
+                    String.fromCharCode(0x66f4, 0x591a),
+                    String.fromCharCode(0x6700, 0x8fd1)
                 ];
                 const semanticDrawer = element.matches("aside, nav, [role='navigation']")
                     || drawerLabels.some((label) => text.includes(label));
