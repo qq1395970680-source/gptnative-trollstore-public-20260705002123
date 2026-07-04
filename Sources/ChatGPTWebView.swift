@@ -1604,7 +1604,7 @@ struct ChatGPTWebContainer: UIViewRepresentable {
             const filenameWithExtension = (filename, mimeType) => {
                 const value = String(filename || "chatgpt-image");
                 const extension = extensionForMime(mimeType);
-                return new RegExp("\\\\." + extension + "$", "i").test(value) ? value : value + "." + extension;
+                return value.toLowerCase().endsWith("." + extension.toLowerCase()) ? value : value + "." + extension;
             };
 
             const postBase64 = (base64, mimeType, filename, mode) => {
