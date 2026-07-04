@@ -28,6 +28,12 @@ The script uploads a clean repository tree through `https://api.github.com`, run
 The GitHub Actions build runs four verification gates:
 
 ```powershell
+python Scripts\verify_all.py --ipa ..\..\outputs\GPTNative.ipa
+```
+
+Or run the gates individually:
+
+```powershell
 node Scripts\verify_image_save_bridge.js
 node Scripts\verify_page_appearance_bridge.js
 python Scripts\verify_native_performance_config.py
