@@ -25,7 +25,7 @@ The script uploads a clean repository tree through `https://api.github.com`, run
 
 ## Verification
 
-The GitHub Actions build runs seven verification gates:
+The GitHub Actions build runs eight verification gates:
 
 ```powershell
 python Scripts\verify_all.py --ipa ..\..\outputs\GPTNative.ipa
@@ -40,6 +40,7 @@ node Scripts\verify_page_appearance_bridge.js
 python Scripts\verify_native_surface_config.py
 python Scripts\verify_native_performance_config.py
 python Scripts\verify_network_error_messages.py
+python Scripts\verify_release_contract.py
 python Scripts\verify_packaged_ipa.py ..\..\outputs\GPTNative.ipa
 ```
 
@@ -49,4 +50,5 @@ The page appearance check verifies viewport-fit, unified top/header surface pain
 The native surface check verifies the SwiftUI root, `UIWindow`, status-safe-area cover, and `WKWebView` backgrounds all use the same app surface while the web content stays below the status bar.
 The native performance check verifies the WKWebView scroll/touch settings, hidden scroll indicators, async drawing flags, and short non-spring custom menu animations.
 The network error check verifies SSL/cellular/proxy guidance remains clear when ChatGPT cannot establish a secure connection.
+The release contract check verifies the iOS 16/iPhone-only/ProMotion configuration, official ChatGPT web entry point, GitHub REST API builder, macOS Actions build, unsigned `iphoneos` release build, Payload packaging, and IPA artifact upload path.
 The packaged IPA check verifies the `Payload/*.app` structure, executable, display name, iOS minimum version, portrait-only orientation, full-screen flag, and the ProMotion unlock key.

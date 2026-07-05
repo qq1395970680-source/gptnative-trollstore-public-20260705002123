@@ -39,6 +39,10 @@ jobs:
         run: |
           python3 Scripts/verify_network_error_messages.py
 
+      - name: Verify release contract
+        run: |
+          python3 Scripts/verify_release_contract.py
+
       - name: Install tools
         run: |
           brew update
