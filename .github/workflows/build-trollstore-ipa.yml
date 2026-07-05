@@ -19,6 +19,10 @@ jobs:
           node --version
           node Scripts/verify_image_save_bridge.js
 
+      - name: Verify native image menu config
+        run: |
+          python3 Scripts/verify_native_image_menu_config.py
+
       - name: Verify page appearance bridge
         run: |
           node Scripts/verify_page_appearance_bridge.js

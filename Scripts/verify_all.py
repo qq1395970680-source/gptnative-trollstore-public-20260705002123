@@ -42,6 +42,7 @@ def main() -> int:
         ipa_path = (Path.cwd() / ipa_path).resolve()
 
     run(["node", "Scripts/verify_image_save_bridge.js"])
+    run([sys.executable, "Scripts/verify_native_image_menu_config.py"])
     run(["node", "Scripts/verify_page_appearance_bridge.js"])
     run([sys.executable, "Scripts/verify_native_surface_config.py"])
     run([sys.executable, "Scripts/verify_native_performance_config.py"])
