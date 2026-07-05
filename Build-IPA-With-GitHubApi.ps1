@@ -200,14 +200,14 @@ function Wait-ForWorkflowRun {
 
     Write-Host "Waiting for workflow run to appear..."
     while ((Get-Date).ToUniversalTime() -lt $deadline) {
-        $runs = Invoke-GitHubApi -Method GET -Path "/repos/$Owner/$RepoName/actions/workflows/$WorkflowFile/runs?branch=$Branch&event=workflow_dispatch&per_page=10"
+        $runs = Invoke-GitHubApi -Method GET -Path "/repos/$Owner/$RepoName/actions/workflows/$WorkflowFile/runs?branch=$Branch&per_page=30"
         $run = $runs.workflow_runs |
             Where-Object {
                 $createdAt = ([datetime]$_.created_at).ToUniversalTime()
                 $createdAt -ge $SinceUtc.AddSeconds(-5) -and
                     ([string]::IsNullOrWhiteSpace($HeadSha) -or $_.head_sha -eq $HeadSha)
             } |
-            Sort-Object created_at -Descending |
+            Sort-Object @{ Expression = { if ($_.event -eq "workflow_dispatch") { 1 } else { 0 } }; Descending = $true }, created_at -Descending |
             Select-Object -First 1
 
         if ($run) {
