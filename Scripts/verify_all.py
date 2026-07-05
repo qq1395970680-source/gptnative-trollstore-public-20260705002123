@@ -49,6 +49,7 @@ def main() -> int:
     run([sys.executable, "Scripts/verify_network_error_messages.py"])
     run([sys.executable, "Scripts/verify_release_contract.py"])
     run([sys.executable, "Scripts/verify_packaged_ipa.py", str(ipa_path)])
+    run([sys.executable, "Scripts/verify_packaged_behavior_markers.py", str(ipa_path)])
     print("all verification gates ok")
     return 0
 

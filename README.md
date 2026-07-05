@@ -25,7 +25,7 @@ The script uploads a clean repository tree through `https://api.github.com`, run
 
 ## Verification
 
-The GitHub Actions build runs eight verification gates:
+The GitHub Actions build runs nine verification gates:
 
 ```powershell
 python Scripts\verify_all.py --ipa ..\..\outputs\GPTNative.ipa
@@ -42,6 +42,7 @@ python Scripts\verify_native_performance_config.py
 python Scripts\verify_network_error_messages.py
 python Scripts\verify_release_contract.py
 python Scripts\verify_packaged_ipa.py ..\..\outputs\GPTNative.ipa
+python Scripts\verify_packaged_behavior_markers.py ..\..\outputs\GPTNative.ipa
 ```
 
 The image-save check extracts the real injected script from `Sources/ChatGPTWebView.swift` and verifies image long-press hit testing, composer/header non-misfires, canvas/background/link detection, and data-image filename handling.
@@ -52,3 +53,4 @@ The native performance check verifies the WKWebView scroll/touch settings, hidde
 The network error check verifies SSL/cellular/proxy guidance remains clear when ChatGPT cannot establish a secure connection.
 The release contract check verifies the iOS 16/iPhone-only/ProMotion configuration, official ChatGPT web entry point, GitHub REST API builder, macOS Actions build, unsigned `iphoneos` release build, Payload packaging, and IPA artifact upload path.
 The packaged IPA check verifies the `Payload/*.app` structure, executable, display name, iOS minimum version, portrait-only orientation, full-screen flag, and the ProMotion unlock key.
+The packaged behavior marker check verifies the final IPA executable contains the shipped image-save, safe-area, drawer-mask, scrollbar, composer-clearance, and ChatGPT host markers.
